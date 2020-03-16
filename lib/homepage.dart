@@ -62,15 +62,6 @@ class _HomePageState extends State<HomePage> {
       new Sales(5, 60),
     ];
 
-    var linesalesdata2 = [
-      new Sales(0, 20),
-      new Sales(1, 24),
-      new Sales(2, 25),
-      new Sales(3, 40),
-      new Sales(4, 45),
-      new Sales(5, 60),
-    ];
-
     _seriesData.add(
       charts.Series(
         domainFn: (DisBarra disbarra, _) => disbarra.discapacidad,
@@ -120,15 +111,6 @@ class _HomePageState extends State<HomePage> {
         colorFn: (__, _) => charts.ColorUtil.fromDartColor(Color(0xff109618)),
         id: 'Air Pollution',
         data: linesalesdata1,
-        domainFn: (Sales sales, _) => sales.yearval,
-        measureFn: (Sales sales, _) => sales.salesval,
-      ),
-    );
-    _seriesLineData.add(
-      charts.Series(
-        colorFn: (__, _) => charts.ColorUtil.fromDartColor(Color(0xffff9900)),
-        id: 'Air Pollution',
-        data: linesalesdata2,
         domainFn: (Sales sales, _) => sales.yearval,
         measureFn: (Sales sales, _) => sales.salesval,
       ),
