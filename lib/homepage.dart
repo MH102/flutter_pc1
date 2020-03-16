@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   List<charts.Series<DisBarra, String>> _seriesData;
   List<charts.Series<Task, String>> _seriesPieData;
   List<charts.Series<Sales, int>> _seriesLineData;
-
+  List<charts.Series<DisBurbuja, int>> _seriesBubbleData;
   _generateData() {
     final hombresData = [
       new DisBarra('Vision', 112613),
@@ -61,7 +61,76 @@ class _HomePageState extends State<HomePage> {
       new Sales(4, 51),
       new Sales(5, 60),
     ];
+    final visionBData = [
+      new DisBurbuja(14471, 0),
+      new DisBurbuja(30661, 15),
+      new DisBurbuja(117509, 30),
+      new DisBurbuja(22374, 60),
+      new DisBurbuja(34089, 65),
+      new DisBurbuja(28368, 75),
+      new DisBurbuja(3992, 90),
+    ];
 
+    final oidoBData = [
+      new DisBurbuja(3339, 2),
+      new DisBurbuja(4983, 17),
+      new DisBurbuja(20643, 32),
+      new DisBurbuja(5409, 60),
+      new DisBurbuja(12858, 67),
+      new DisBurbuja(19258, 77),
+      new DisBurbuja(4219, 92),
+    ];
+
+    final vozBData = [
+      new DisBurbuja(7331, 4),
+      new DisBurbuja(4810, 19),
+      new DisBurbuja(8359, 34),
+      new DisBurbuja(1210, 61),
+      new DisBurbuja(2469, 69),
+      new DisBurbuja(4126, 79),
+      new DisBurbuja(1108, 94),
+    ];
+
+    final caminarBData = [
+      new DisBurbuja(4749, 6),
+      new DisBurbuja(8350, 21),
+      new DisBurbuja(48919, 36),
+      new DisBurbuja(13790, 61),
+      new DisBurbuja(26710, 71),
+      new DisBurbuja(32221, 81),
+      new DisBurbuja(5641, 96),
+    ];
+
+    final brazosBData = [
+      new DisBurbuja(2202, 8),
+      new DisBurbuja(3953, 23),
+      new DisBurbuja(19530, 38),
+      new DisBurbuja(4766, 62),
+      new DisBurbuja(8216, 72),
+      new DisBurbuja(8588, 83),
+      new DisBurbuja(1604, 98),
+    ];
+
+    final intelectoBData = [
+      new DisBurbuja(9571, 10),
+      new DisBurbuja(11395, 25),
+      new DisBurbuja(10867, 40),
+      new DisBurbuja(766, 62),
+      new DisBurbuja(1204, 73),
+      new DisBurbuja(1331, 85),
+      new DisBurbuja(282, 100),
+    ];
+
+    final mentalBData = [
+      new DisBurbuja(2624, 12),
+      new DisBurbuja(4957, 27),
+      new DisBurbuja(11258, 42),
+      new DisBurbuja(1429, 62),
+      new DisBurbuja(2476, 74),
+      new DisBurbuja(3514, 87),
+      new DisBurbuja(713, 102),
+    ];
+    
     _seriesData.add(
       charts.Series(
         domainFn: (DisBarra disbarra, _) => disbarra.discapacidad,
@@ -115,6 +184,146 @@ class _HomePageState extends State<HomePage> {
         measureFn: (Sales sales, _) => sales.salesval,
       ),
     );
+
+    _seriesBubbleData.add(
+      charts.Series(
+        id: 'Vision',
+        // Providing a color function is optional.
+        colorFn: (DisBurbuja sales, _) => charts.MaterialPalette.red.shadeDefault,
+        domainFn: (DisBurbuja sales, _) => sales.edad,
+        measureFn: (DisBurbuja sales, _) => sales.cantidad,
+        // Providing a radius function is optional.
+        radiusPxFn: (DisBurbuja sales, _) {
+          if(sales.cantidad > 9999) {
+            return (sales.cantidad / 10000) * 2;
+          }
+          else{
+            return (sales.cantidad/1000);
+          }
+        },
+        data: visionBData,
+      ),
+    );
+
+    _seriesBubbleData.add(
+      charts.Series(
+        id: 'Oido',
+        // Providing a color function is optional.
+        colorFn: (DisBurbuja sales, _) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (DisBurbuja sales, _) => sales.edad,
+        measureFn: (DisBurbuja sales, _) => sales.cantidad,
+        // Providing a radius function is optional.
+        radiusPxFn: (DisBurbuja sales, _) {
+          if(sales.cantidad > 9999) {
+            return (sales.cantidad / 10000) * 2;
+          }
+          else{
+            return (sales.cantidad/1000);
+          }
+        },
+        data: oidoBData,
+      ),
+    );
+
+    _seriesBubbleData.add(
+      charts.Series(
+        id: 'Voz',
+        // Providing a color function is optional.
+        colorFn: (DisBurbuja sales, _) => charts.MaterialPalette.yellow.shadeDefault,
+        domainFn: (DisBurbuja sales, _) => sales.edad,
+        measureFn: (DisBurbuja sales, _) => sales.cantidad,
+        // Providing a radius function is optional.
+        radiusPxFn: (DisBurbuja sales, _) {
+          if(sales.cantidad > 9999) {
+            return (sales.cantidad / 10000) * 2;
+          }
+          else{
+            return (sales.cantidad/1000);
+          }
+        },
+        data: vozBData,
+      ),
+    );
+
+    _seriesBubbleData.add(
+      charts.Series(
+        id: 'Caminar',
+        // Providing a color function is optional.
+        colorFn: (DisBurbuja sales, _) => charts.MaterialPalette.green.shadeDefault,
+        domainFn: (DisBurbuja sales, _) => sales.edad,
+        measureFn: (DisBurbuja sales, _) => sales.cantidad,
+        // Providing a radius function is optional.
+        radiusPxFn: (DisBurbuja sales, _) {
+          if(sales.cantidad > 9999) {
+            return (sales.cantidad / 10000) * 2;
+          }
+          else{
+            return (sales.cantidad/1000);
+          }
+        },
+        data: caminarBData,
+      ),
+    );
+
+    _seriesBubbleData.add(
+      charts.Series(
+        id: 'Brazos',
+        // Providing a color function is optional.
+        colorFn: (DisBurbuja sales, _) => charts.MaterialPalette.purple.shadeDefault,
+        domainFn: (DisBurbuja sales, _) => sales.edad,
+        measureFn: (DisBurbuja sales, _) => sales.cantidad,
+        // Providing a radius function is optional.
+        radiusPxFn: (DisBurbuja sales, _) {
+          if(sales.cantidad > 9999) {
+            return (sales.cantidad / 10000) * 2;
+          }
+          else{
+            return (sales.cantidad/1000);
+          }
+        },
+        data: brazosBData,
+      ),
+    );
+
+    _seriesBubbleData.add(
+      charts.Series(
+        id: 'Intelectual',
+        // Providing a color function is optional.
+        colorFn: (DisBurbuja sales, _) => charts.MaterialPalette.deepOrange.shadeDefault,
+        domainFn: (DisBurbuja sales, _) => sales.edad,
+        measureFn: (DisBurbuja sales, _) => sales.cantidad,
+        // Providing a radius function is optional.
+        radiusPxFn: (DisBurbuja sales, _) {
+          if(sales.cantidad > 9999) {
+            return (sales.cantidad / 10000) * 2;
+          }
+          else{
+            return (sales.cantidad/1000);
+          }
+        },
+        data: intelectoBData,
+      ),
+    );
+
+    _seriesBubbleData.add(
+      charts.Series(
+        id: 'Mental',
+        // Providing a color function is optional.
+        colorFn: (DisBurbuja sales, _) => charts.MaterialPalette.cyan.shadeDefault,
+        domainFn: (DisBurbuja sales, _) => sales.edad,
+        measureFn: (DisBurbuja sales, _) => sales.cantidad,
+        // Providing a radius function is optional.
+        radiusPxFn: (DisBurbuja sales, _) {
+          if(sales.cantidad > 9999) {
+            return (sales.cantidad / 10000) * 2;
+          }
+          else{
+            return (sales.cantidad/1000);
+          }
+        },
+        data: mentalBData,
+      ),
+    );
   }
 
   @override
@@ -124,6 +333,7 @@ class _HomePageState extends State<HomePage> {
     _seriesData = List<charts.Series<DisBarra, String>>();
     _seriesPieData = List<charts.Series<Task, String>>();
     _seriesLineData = List<charts.Series<Sales, int>>();
+    _seriesBubbleData = List<charts.Series<DisBurbuja,int>>();
     _generateData();
   }
 
@@ -229,24 +439,25 @@ class _HomePageState extends State<HomePage> {
                         Text(
                             'Sales for the first 5 years',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold),),
                         Expanded(
-                          child: charts.LineChart(
-                            _seriesLineData,
-                            defaultRenderer: new charts.LineRendererConfig(
-                                includeArea: true, stacked: true),
+
+                          child: charts.ScatterPlotChart(
+                            _seriesBubbleData,
                             animate: true,
-                            animationDuration: Duration(seconds: 5),
-                            behaviors: [
-        new charts.ChartTitle('Years',
-            behaviorPosition: charts.BehaviorPosition.bottom,
-            titleOutsideJustification:charts.OutsideJustification.middleDrawArea),
-        new charts.ChartTitle('Sales',
-            behaviorPosition: charts.BehaviorPosition.start,
-            titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
-        new charts.ChartTitle('Departments',
-            behaviorPosition: charts.BehaviorPosition.end,
-            titleOutsideJustification:charts.OutsideJustification.middleDrawArea,
-            )   
-      ]
+                            domainAxis: new charts.NumericAxisSpec(
+                              renderSpec: new charts.SmallTickRendererSpec(
+                                //tickLengthPx: 14,
+                              ),
+                            ),
+                            behaviors: [new charts.SeriesLegend(outsideJustification: charts.OutsideJustification.endDrawArea,
+                              horizontalFirst: false,
+                              desiredMaxRows: 2,
+                              cellPadding: new EdgeInsets.only(right: 4.0, bottom: 4.0),
+                              entryTextStyle: charts.TextStyleSpec(
+                                  color: charts.MaterialPalette.black,
+                                  fontFamily: 'Georgia',
+                                  fontSize: 11),
+                            )
+                            ],
                           ),
                         ),
                       ],
@@ -290,4 +501,10 @@ class DisBarra {
   final int cantidad;
 
   DisBarra(this.discapacidad, this.cantidad);
+}
+class DisBurbuja {
+  final int cantidad;
+  final int edad;
+
+  DisBurbuja(this.cantidad, this.edad);
 }
