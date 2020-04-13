@@ -12,8 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<charts.Series<DisBarra, String>> _seriesData;
-  List<charts.Series<Task, String>> _seriesPieData;
-  List<charts.Series<Sales, int>> _seriesLineData;
+  List<charts.Series<DisDona, String>> _seriesPieData;
   List<charts.Series<DisBurbuja, int>> _seriesBubbleData;
   _generateData() {
     final hombresData = [
@@ -37,13 +36,13 @@ class _HomePageState extends State<HomePage> {
     ];
 
     var piedata = [
-      new Task('Vision', 1, Color(0xff3366cc)),
-      new Task('Oido', 1, Color(0xff990099)),
-      new Task('Voz', 1, Color(0xff109618)),
-      new Task('Caminar', 15.6, Color(0xfffdbe19)),
-      new Task('Brazos', 19.2, Color(0xffff9900)),
-      new Task('Intelecto', 10.3, Color(0xffdc3912)),
-      new Task('Mente', 10.3, Color(0xffed9192)),
+      new DisDona('Vision', 251, Color(0xff3366cc)),
+      new DisDona('Oido', 70, Color(0xff990099)),
+      new DisDona('Voz', 29, Color(0xff109618)),
+      new DisDona('Caminar', 140, Color(0xfffdbe19)),
+      new DisDona('Brazos', 48, Color(0xffff9900)),
+      new DisDona('Intelecto', 35, Color(0xffdc3912)),
+      new DisDona('Mente', 26, Color(0xffed9192)),
     ];
 
     final visionBData = [
@@ -141,13 +140,13 @@ class _HomePageState extends State<HomePage> {
     );
     _seriesPieData.add(
       charts.Series(
-        domainFn: (Task task, _) => task.task,
-        measureFn: (Task task, _) => task.taskvalue,
-        colorFn: (Task task, _) =>
-            charts.ColorUtil.fromDartColor(task.colorval),
+        domainFn: (DisDona disdona, _) => disdona.discapacidad,
+        measureFn: (DisDona disdona, _) => disdona.cantidad,
+        colorFn: (DisDona disdona, _) =>
+            charts.ColorUtil.fromDartColor(disdona.colorval),
         id: 'Air Pollution',
         data: piedata,
-         labelAccessorFn: (Task row, _) => '${row.taskvalue}',
+         labelAccessorFn: (DisDona row, _) => '${row.cantidad}',
       ),
     );
 
@@ -298,8 +297,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     _seriesData = List<charts.Series<DisBarra, String>>();
-    _seriesPieData = List<charts.Series<Task, String>>();
-    _seriesLineData = List<charts.Series<Sales, int>>();
+    _seriesPieData = List<charts.Series<DisDona, String>>();
     _seriesBubbleData = List<charts.Series<DisBurbuja,int>>();
     _generateData();
   }
@@ -366,7 +364,7 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                            'Discapacidad en Costa Rica por Tipo',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold),),
+                            'Discapacidad en Costa Rica por Tipo (por miles de personas)',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold),),
                             SizedBox(height: 10.0,),
                         Expanded(
                           child: charts.PieChart(
@@ -440,27 +438,13 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class Pollution {
-  String place;
-  int year;
-  int quantity;
 
-  Pollution(this.year, this.place, this.quantity);
-}
-
-class Task {
-  String task;
-  double taskvalue;
+class DisDona {
+  final String discapacidad;
+  final int cantidad;
   Color colorval;
 
-  Task(this.task, this.taskvalue, this.colorval);
-}
-
-class Sales {
-  int yearval;
-  int salesval;
-
-  Sales(this.yearval, this.salesval);
+  DisDona(this.discapacidad, this.cantidad, this.colorval);
 }
 
 class DisBarra {
