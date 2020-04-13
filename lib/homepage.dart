@@ -314,17 +314,52 @@ class _HomePageState extends State<HomePage> {
             bottom: TabBar(
               indicatorColor: Color(0xff9962D0),
               tabs: [
+                Tab(icon: Icon(FontAwesomeIcons.chartLine)),
                 Tab(
                   icon: Icon(FontAwesomeIcons.solidChartBar),
                 ),
                 Tab(icon: Icon(FontAwesomeIcons.chartPie)),
-                Tab(icon: Icon(FontAwesomeIcons.chartLine)),
               ],
             ),
             title: Text('Flutter Charts'),
           ),
           body: TabBarView(
             children: [
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Container(
+                  child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          'Discapacidad en Costa Rica por Categoria y Edad',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold),),
+                        Expanded(
+
+                          child: charts.ScatterPlotChart(
+                            _seriesBubbleData,
+                            animate: true,
+                            domainAxis: new charts.NumericAxisSpec(
+                              renderSpec: new charts.SmallTickRendererSpec(
+                                //tickLengthPx: 14,
+                              ),
+                            ),
+                            behaviors: [new charts.SeriesLegend(outsideJustification: charts.OutsideJustification.endDrawArea,
+                              horizontalFirst: false,
+                              desiredMaxRows: 2,
+                              cellPadding: new EdgeInsets.only(right: 4.0, bottom: 4.0),
+                              entryTextStyle: charts.TextStyleSpec(
+                                  color: charts.MaterialPalette.black,
+                                  fontFamily: 'Georgia',
+                                  fontSize: 11),
+                            )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Container(
@@ -389,41 +424,6 @@ class _HomePageState extends State<HomePage> {
           new charts.ArcLabelDecorator(
               labelPosition: charts.ArcLabelPosition.inside)
         ])),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                            'Discapacidad en Costa Rica por Categoria y Edad',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold),),
-                        Expanded(
-
-                          child: charts.ScatterPlotChart(
-                            _seriesBubbleData,
-                            animate: true,
-                            domainAxis: new charts.NumericAxisSpec(
-                              renderSpec: new charts.SmallTickRendererSpec(
-                                //tickLengthPx: 14,
-                              ),
-                            ),
-                            behaviors: [new charts.SeriesLegend(outsideJustification: charts.OutsideJustification.endDrawArea,
-                              horizontalFirst: false,
-                              desiredMaxRows: 2,
-                              cellPadding: new EdgeInsets.only(right: 4.0, bottom: 4.0),
-                              entryTextStyle: charts.TextStyleSpec(
-                                  color: charts.MaterialPalette.black,
-                                  fontFamily: 'Georgia',
-                                  fontSize: 11),
-                            )
-                            ],
-                          ),
                         ),
                       ],
                     ),
