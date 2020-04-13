@@ -402,7 +402,7 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                            'Sales for the first 5 years',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold),),
+                            'Discapacidad en Costa Rica por Categoria y Edad',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold),),
                         Expanded(
 
                           child: charts.ScatterPlotChart(
